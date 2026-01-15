@@ -10,6 +10,14 @@ class factorythm:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.clock = pygame.time.Clock()
 
+    def update(self, tick: int, board):
+        for row in board.grid:
+            for machine in row:
+                if isinstance(machine, impulse_machine):
+                    machine.check_and_send_impulse(tick)
+                elif isinstance(machine, delay_machine):
+                    machine.update(tick)
+
 class board:
     def create_empty_grid(self, rows: int, cols: int) -> list[list[str]]:
         self.rows = 100
@@ -45,6 +53,9 @@ class impulse_machine: # I Impulse Machine
     def check_and_send_impulse(self, tick: int):
         if tick % self.frequency == 0:
             send_impulse(tick)
+
+    def update(self):
+        pass
 
 class delay_machine:
     def __init__(self, delay_ticks: int):
