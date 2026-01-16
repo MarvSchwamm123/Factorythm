@@ -3,7 +3,7 @@ import math
 import os
 import time
 
-class factorythm:
+class data_model:
     def __init__(self):
         self.width = 1680
         self.height = 1050
@@ -19,6 +19,9 @@ class factorythm:
                     machine.update(tick)
 
 class board:
+    def __init__(self):
+        self.grid = self.create_empty_grid(100, 100)
+
     def create_empty_grid(self, rows: int, cols: int) -> list[list[str]]:
         self.rows = 100
         self.cols = 100
