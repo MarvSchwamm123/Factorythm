@@ -1,7 +1,10 @@
-from data_model import *
-from pygame_demo import pygame_demo
+# ==============================
+# Copyright (c) 2026 Marvin Sanzenbacher(germany-Baden Wüttemberg)
+# All rights reserved.
+# ==============================
+
+from game import Game
 
 if __name__ == "__main__":
-    pygame.init()
-    Factorythm = pygame_demo("in_world")
-    Factorythm.main()
+    game = Game()
+    game.run()

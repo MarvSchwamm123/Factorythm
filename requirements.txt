@@ -1,0 +1,7 @@
+# ==============================
+# Copyright (c) 2026 Marvin Sanzenbacher(germany-Baden Wüttemberg)
+# All rights reserved.
+# ==============================
+
+pygame
+enum

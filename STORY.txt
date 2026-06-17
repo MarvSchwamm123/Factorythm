@@ -1,0 +1,17 @@
+# ==============================
+# Copyright (c) 2026 Marvin Sanzenbacher(germany-Baden Wüttemberg)
+# All rights reserved.
+# ==============================
+
+Imagine you are a yung componist in a world music is beeing played by machines and every corner you need music to open Gates and go on in the Game.
+
+you start by working for a King who kicked you out because youre music was to simple and didnt sound good.
+But you dont get out because the door needs a synphonie so you try to learn how to create music with machines.
+You are still on your room and dont know that you got kicked out and the King and his people just went to the new castle and left you there alone.
+So youre trying to get out of the castle.
+
+at first you only have a impulse maker and note lines you can draw lines from the impulse maker to the note lines to let the base note "C" go from the impulse maker to the lines and let the "C" be played.
+later you discover machines that higher or lower the note and you can change the intervall and note length from the impulse maker
+you get machines that make acords and septimes with the base note as input. 
+
+Then you are ready to see the outer world and be free from the Kings house
