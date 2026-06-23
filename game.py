@@ -4,8 +4,9 @@
 # ==============================
 
 import pygame
-from states.home import HomeState
-from states.game import GameState
+import os
+from states.home import Home_State
+from states.game import Game_State
 
 class Game:
     def __init__(self):
@@ -13,8 +14,11 @@ class Game:
 
         self.screen = pygame.display.set_mode((1280, 720))
         self.clock = pygame.time.Clock()
+        
+        self.HomeState = Home_State(self)
+        self.GameState = Game_State(self)
 
-        self.state = HomeState(self)
+        self.state = self.HomeState
 
         self.running = True
 
@@ -26,6 +30,11 @@ class Game:
             self.state.handle_events()
             self.state.update()
             self.state.render(self.screen)
+            
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.type == pygame.K_ESCAPE:
+                        running = False
 
             pygame.display.flip()
             self.clock.tick(60)
