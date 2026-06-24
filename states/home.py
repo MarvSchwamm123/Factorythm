@@ -5,6 +5,13 @@
 
 import pygame
 from states.game import Game_State
+from enum import Enum
+
+class MENU_BUTTON(Enum):
+    START = 1
+    LOAD = 2
+    SETTINGS = 3
+    QUIT = 4
 
 class Home_State:
     def __init__(self, game):
@@ -35,9 +42,22 @@ class Home_State:
             (400, 120)
         )
         
+        self.button_names = {
+            MENU_BUTTON.START: "New Game",
+            MENU_BUTTON.LOAD: "Load Game",
+            MENU_BUTTON.SETTINGS: "Settings",
+            MENU_BUTTON.QUIT: "Quit"
+        }
         
-        self.menu_items = ["New Game", "Load Game", "Settings", "Quit"]
+        self.menu_items = [
+            MENU_BUTTON.START,
+            MENU_BUTTON.LOAD,
+            MENU_BUTTON.SETTINGS,
+            MENU_BUTTON.QUIT
+        ]
         self.selected_index = 0
+        self.button_scales = [1.0 for _ in self.menu_items]
+        self.scale_speed = 0.15
         
         
         self.phase = "intro" # intro/menu
@@ -52,15 +72,34 @@ class Home_State:
                     self.game.running = False
                     
                 if event.key == pygame.K_UP:
-                    self.selected_index -= 1
+                    self.selected_index = max(0, self.selected_index - 1)
 
                 if event.key == pygame.K_DOWN:
-                    self.selected_index += 1
+                    self.selected_index = min(
+                        len(self.menu_items) - 1,
+                        self.selected_index + 1
+                    )
 
                 if event.key == pygame.K_RETURN:
-                    print("Selected:", self.menu_items[self.selected_index])
+
                     if self.phase == "intro":
                         self.phase = "menu"
+
+                    else:
+                        selected = self.menu_items[self.selected_index]
+
+                        if selected == MENU_BUTTON.START:
+                            self.game.state = Game_State(self.game)
+
+                        elif selected == MENU_BUTTON.LOAD:
+                            print("Load")
+
+                        elif selected == MENU_BUTTON.SETTINGS:
+                            print("Settings")
+
+                        elif selected == MENU_BUTTON.QUIT:
+                            self.game.running = False
+                    
 
     def update(self):
         if self.phase == "menu":
@@ -113,7 +152,11 @@ class Home_State:
             rect = button.get_rect(center=(x, y))
             screen.blit(button, rect)
 
-            text = font.render(item, True, (255, 255, 255))
+            text = font.render(
+                self.button_names[item],
+                True,
+                (255, 255, 255)
+            )
             text_rect = text.get_rect(center=(x, y))
             screen.blit(text, text_rect)
             
