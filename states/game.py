@@ -19,15 +19,24 @@ class Game_State:
         self.last_mouse = (0, 0)
         self.camera_x = 0
         self.camera_y = 0
+        
+        self.world_width = 2000
+        
+        screen_width = self.game.screen.get_width()
 
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.game.running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.game.running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 2:  # Mausrad gedrückt
                     self.dragging = True
                     self.last_mouse = event.pos
+                else:
+                    self.dragging = False
 
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 2:
